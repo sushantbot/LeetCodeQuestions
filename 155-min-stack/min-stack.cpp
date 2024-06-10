@@ -1,39 +1,63 @@
 class MinStack {
 public:
-    vector<pair<int, int> > v;
-    MinStack() {}
-
+    //we are creating an array of pairs
+    vector<pair<int,int>>arr;
+    MinStack() {
+        
+    }
+    
     void push(int val) {
-                //case-1(stack Empty)--> The value will be first and second both
-        if(v.empty()){
-            //then the first and second both will be val
-            pair<int,int>p;
-            p.first=val;
-            p.second=val;
-            v.push_back(p);
+        //since we are pushing into vector,
+        //there will be no OVERFLOW Condition 
+        
+        //Here two case arises, if the array is empty or not
+        if(arr.empty()){
+            //in this case our val will be first and second
+            //creating pair
+            pair<int,int>p=make_pair(val,val);
+            //pushing this pair into our array of pairs
+            arr.push_back(p);
         }
-        //but when stack is not empty 
-        //we will check min from the previous one
         else{
+            //if the array is not empty 
+            //here we need to check if the val is mininmum or the prev pair
             pair<int,int>p;
             p.first=val;
-            int puranaMin=v.back().second;
-            p.second=min(val,puranaMin);
-            v.push_back(p);
+            int OldMin=arr.back().second;
+            p.second=min(val,OldMin);
+            arr.push_back(p);
         }
     }
-
-
+    
     void pop() {
-        v.pop_back();
+        //Here we need to check if the array is empty or not
+        //just to avoid UNDERFLOW Condition
+        if(arr.empty()){
+            return; 
+        }
+        else{
+            //when the array is not empty,
+            //we will pop the last element
+            arr.pop_back();
+        }
     }
-
+    
     int top() {
-        return v.back().first;
+        //The top element will be our rightmost pair
+        pair<int,int>rightMostPair=arr.back();
+        //now the first element of righmost pair will be our top element
+        return rightMostPair.first;
+        
     }
-
+    
     int getMin() {
-        return v.back().second;
+        
+        //The top element will be our rightmost pair
+        //and the rightmost pair's second will have the min till this index
+
+        pair<int,int>rightMostPair=arr.back();
+        //now the second element of righmost pair will be our minimum till here
+        return rightMostPair.second;
     }
 };
 
