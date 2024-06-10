@@ -23,8 +23,8 @@ public:
             //here we need to check if the val is mininmum or the prev pair
             pair<int,int>p;
             p.first=val;
-            int OldMin=arr.back().second;
-            p.second=min(val,OldMin);
+            // int OldMin=;
+            p.second=min(val,arr.back().second);
             arr.push_back(p);
         }
     }
