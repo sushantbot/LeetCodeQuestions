@@ -31,8 +31,6 @@ public:
 
     }
     int largestRectangleArea(vector<int>& heights) {
-        //From next and prev vectors we will decide whether rectangle can be 
-        //extended or not
         vector<int>next=nextSmallerElement(heights);
         for(int i=0;i<heights.size();i++){
             if(next[i]==-1){
