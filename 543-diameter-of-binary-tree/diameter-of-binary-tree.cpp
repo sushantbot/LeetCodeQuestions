@@ -29,11 +29,11 @@ public:
             return 0;
         }
         // first of all we will find the height of left
-        int leftkaHeight = diameterOfBinaryTree(root->left);
-        int rightkaHeight = diameterOfBinaryTree(root->right);
-        int combinedheight = height(root->left)+height(root->right);
+        int case1 = diameterOfBinaryTree(root->left);
+        int case2 = diameterOfBinaryTree(root->right);
+        int case3 = height(root->left)+height(root->right);
 
         //Our answer will be the max of the above three cases
-        return max(leftkaHeight,max(rightkaHeight,combinedheight));
+        return max(case1,max(case2,case3));
     }
 };
