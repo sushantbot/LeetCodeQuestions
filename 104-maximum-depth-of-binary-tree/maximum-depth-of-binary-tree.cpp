@@ -13,6 +13,7 @@
  */
 class Solution {
 public:
+    //Approach 1 (Using LevelOrderTraversal)
     int Approach1(TreeNode*&root) {
         queue<TreeNode*> q;
         if (root == nullptr) {
@@ -41,6 +42,7 @@ public:
         }
         return Level - 1;
     }
+    //Using recursion to find the
     int Approach2(TreeNode*&root){
         if(root==nullptr){
             return 0;
