@@ -41,7 +41,19 @@ public:
         }
         return Level - 1;
     }
+    int Approach2(TreeNode*&root){
+        if(root==nullptr){
+            return 0;
+        }
+
+        //Now using recursion to find the height
+        int leftHeight=Approach2(root->left);
+        int rightHeight=Approach2(root->right);
+        int height=max(leftHeight,rightHeight)+1;
+        return height;
+    }
     int maxDepth(TreeNode* root) {
-        return Approach1(root);
+        // return Approach1(root);
+        return Approach2(root);
     }
 };
