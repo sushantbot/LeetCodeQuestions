@@ -49,6 +49,8 @@ public:
         //Now using recursion to find the height
         int leftHeight=Approach2(root->left);
         int rightHeight=Approach2(root->right);
+        //Now we will take the maximum of left and right
+        // subtree and store it in the height
         int height=max(leftHeight,rightHeight)+1;
         return height;
     }
