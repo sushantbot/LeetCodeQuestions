@@ -10,11 +10,10 @@
 class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        //Base Case
+        //Base Cases
         if(root==nullptr){
             return nullptr;
         }
-        //Agar root=p hua to p return krenge
         if(root->val==p->val){
             return p;
         }
@@ -22,24 +21,23 @@ public:
             return q;
         }
 
-        //now we will find leftkaAns and rightka ans
+        //Solving one case myself
         TreeNode*LeftKaAns=lowestCommonAncestor(root->left,p,q);
-        TreeNode*rightKaAns=lowestCommonAncestor(root->right,p,q);
+        TreeNode*RightKaAns=lowestCommonAncestor(root->right,p,q);
 
-        if(LeftKaAns == nullptr && rightKaAns == nullptr){
-            //when both are null then we need to return null in this case
+
+        //Checking Cnditions
+        if(LeftKaAns==nullptr && RightKaAns==nullptr){
             return nullptr;
         }
-        else if(LeftKaAns != nullptr && rightKaAns == nullptr){
+        else if(LeftKaAns!=nullptr && RightKaAns==nullptr){
             return LeftKaAns;
         }
-        else if(LeftKaAns == nullptr && rightKaAns != nullptr){
-            return rightKaAns;
+        else if(LeftKaAns==nullptr && RightKaAns!=nullptr){
+            return RightKaAns;
         }
         else{
-            //jab dono non null ho to root return krna hai 
             return root;
         }
-
     }
 };
