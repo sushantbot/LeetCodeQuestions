@@ -10,34 +10,45 @@
 class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        //Base Cases
+        //Base cases
+        //agar root null hua to null return krenge 
         if(root==nullptr){
             return nullptr;
         }
+        //agar root aur p equal hua to p return krenge
         if(root->val==p->val){
             return p;
         }
+        //agar root aur q equal hua to q return krenge
         if(root->val==q->val){
             return q;
         }
 
-        //Solving one case myself
-        TreeNode*LeftKaAns=lowestCommonAncestor(root->left,p,q);
-        TreeNode*RightKaAns=lowestCommonAncestor(root->right,p,q);
+        //Now we will call recursion 
+        TreeNode*leftSubtree=lowestCommonAncestor(root->left,p,q);
+        TreeNode*rightSubtree=lowestCommonAncestor(root->right,p,q);
 
 
-        //Checking Cnditions
-        if(LeftKaAns==nullptr && RightKaAns==nullptr){
-            return nullptr;
+        //Now we will compare with the left and right of the subtree
+        //jab dono side null ho to null hi return krenge
+        if(leftSubtree==nullptr && rightSubtree==nullptr){
+            return NULL;
         }
-        else if(LeftKaAns!=nullptr && RightKaAns==nullptr){
-            return LeftKaAns;
+        //agar ek null ho dusra non null ho to non null wale ko return krenge
+        else if(leftSubtree!=nullptr && rightSubtree==nullptr){
+            return leftSubtree;
         }
-        else if(LeftKaAns==nullptr && RightKaAns!=nullptr){
-            return RightKaAns;
+        else if(leftSubtree==nullptr && rightSubtree!=nullptr){
+            return rightSubtree;
         }
+        //agar iss sab me se kch bhi nhi hai to sirf ek case bachta hai 
+        //wo ye ki left aur right subtree dono non null hai 
+        //aur iss case me root ko return krenge
         else{
             return root;
         }
+
+
+
     }
 };
