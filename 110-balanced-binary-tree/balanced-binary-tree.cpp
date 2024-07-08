@@ -35,13 +35,13 @@ public:
         int rightHeight = height(root->right);
         int diff = abs(leftHeight - rightHeight);
 
-        bool currentNodeAns = (diff <= 1);
+        bool diffCheck = (diff <= 1);
 
         //recursive call
         bool leftAns = isBalanced(root->left);
         bool rightAns = isBalanced(root->right);
 
-        if(currentNodeAns && leftAns && rightAns){
+        if(diffCheck && leftAns && rightAns){
             return true;
         }
         else{
