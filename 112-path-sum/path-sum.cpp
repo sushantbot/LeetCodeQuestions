@@ -11,28 +11,36 @@
  */
 class Solution {
 public:
-    bool solve(TreeNode* &root, int targetSum,int sum){
-        if(root==nullptr){
+    bool Solve(TreeNode* root,int sum, int targetSum){
+        if(root==NULL){
+            //Tree dne so return false
             return false;
         }
-        sum+=root->val;
-        if(root->left==nullptr&& root->right==nullptr){
-            //we are at the leafNode and need to verify the sum with targetSum
+        sum += root->val;
+        if(root->left==NULL && root->right==NULL){
+            //this is leaf node and we need to check
             if(sum==targetSum){
                 return true;
             }
-            else
-                return false;
+            return false;
         }
-        bool leftKaAns=solve(root->left,targetSum,sum);
-        bool rightKaAns=solve(root->right,targetSum,sum);
 
-        return leftKaAns || rightKaAns;
+        //Now recursive calls for left and right
+        bool leftAns = Solve(root->left,sum,targetSum);
+        bool rightAns = Solve(root->right,sum,targetSum);
+
+        //dono ke answer ka or krenge
+        //agar ek bhi true hai to true return krenge
+        if(leftAns==true || rightAns==true){
+            return true;
+        }
+        return false;
+
 
     }
     bool hasPathSum(TreeNode* root, int targetSum) {
-        int sum=0;
-        bool finalans=solve(root,targetSum,sum);
-        return finalans;
+        int sum = 0;
+        bool ans=Solve(root,sum,targetSum);
+        return ans;
     }
 };
