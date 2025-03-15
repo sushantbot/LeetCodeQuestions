@@ -18,7 +18,7 @@ public:
         }
         sum += root->val;
         if(root->left==NULL && root->right==NULL){
-            //this is leaf node and we need to check
+            //this is leaf node and we need to check sum and target sum
             if(sum==targetSum){
                 return true;
             }
@@ -31,10 +31,7 @@ public:
 
         //dono ke answer ka or krenge
         //agar ek bhi true hai to true return krenge
-        if(leftAns==true || rightAns==true){
-            return true;
-        }
-        return false;
+        return leftAns || rightAns;
 
 
     }
