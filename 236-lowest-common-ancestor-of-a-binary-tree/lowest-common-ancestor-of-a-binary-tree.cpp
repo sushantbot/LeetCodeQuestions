@@ -10,45 +10,35 @@
 class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        //Base cases
-        //agar root null hua to null return krenge 
-        if(root==nullptr){
-            return nullptr;
+        // Base case of recursion
+        if (root == NULL) {
+            return NULL;
         }
-        //agar root aur p equal hua to p return krenge
-        if(root->val==p->val){
+        if (root == p) {
             return p;
         }
-        //agar root aur q equal hua to q return krenge
-        if(root->val==q->val){
+        if (root == q) {
             return q;
         }
 
-        //Now we will call recursion 
-        TreeNode*leftSubtree=lowestCommonAncestor(root->left,p,q);
-        TreeNode*rightSubtree=lowestCommonAncestor(root->right,p,q);
 
+        //Now recursive call and cases
+        TreeNode*leftKaAns = lowestCommonAncestor(root->left,p,q);
+        TreeNode*rightKaAns = lowestCommonAncestor(root->right,p,q);
 
-        //Now we will compare with the left and right of the subtree
-        //jab dono side null ho to null hi return krenge
-        if(leftSubtree==nullptr && rightSubtree==nullptr){
+        if(leftKaAns==NULL && rightKaAns!=NULL){
+            return rightKaAns;
+        }
+        else if(leftKaAns!=NULL && rightKaAns==NULL){
+            return leftKaAns;
+        }
+        else if(leftKaAns==NULL && rightKaAns==NULL){
             return NULL;
         }
-        //agar ek null ho dusra non null ho to non null wale ko return krenge
-        else if(leftSubtree!=nullptr && rightSubtree==nullptr){
-            return leftSubtree;
-        }
-        else if(leftSubtree==nullptr && rightSubtree!=nullptr){
-            return rightSubtree;
-        }
-        //agar iss sab me se kch bhi nhi hai to sirf ek case bachta hai 
-        //wo ye ki left aur right subtree dono non null hai 
-        //aur iss case me root ko return krenge
         else{
             return root;
         }
 
-
-
+        
     }
 };
