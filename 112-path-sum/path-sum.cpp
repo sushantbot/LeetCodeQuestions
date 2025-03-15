@@ -16,6 +16,7 @@ public:
             //Tree dne so return false
             return false;
         }
+        //sum har baar add krna hai 
         sum += root->val;
         if(root->left==NULL && root->right==NULL){
             //this is leaf node and we need to check sum and target sum
