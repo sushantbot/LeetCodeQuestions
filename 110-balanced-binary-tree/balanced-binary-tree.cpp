@@ -38,10 +38,6 @@ public:
         bool rightSubtree= isBalanced(root->right);
 
         //When the all three cases of this bool functions return true
-        if(currNodeAns && leftSubtree && rightSubtree){
-            return true;
-        }
-        //else we will return false
-        return false;
+        return (currNodeAns && leftSubtree && rightSubtree);
     }
 };
