@@ -10,38 +10,38 @@
  * };
  */
 class Solution {
+
 public:
-    int height(TreeNode*root){
-        //Base case
+    int height(TreeNode* root){
         if(root==NULL){
             return 0;
         }
 
-        int option1 = height(root->left);
-        int option2 = height(root->right);
+        //Now recursive calls
+        int leftSubtree = height(root->left);
+        int rightSubtree = height(root->right);
+        
+        return max(leftSubtree,rightSubtree)+1;
 
-        int finalans=max(option1,option2)+1;
-        return finalans;
     }
     bool isBalanced(TreeNode* root) {
         if(root==NULL){
-            //in this case we will consider it balanced
             return true;
         }
 
-        int leftHeight = height(root->left);
-        int rightHeight = height(root->right);
+        int leftHeight=height(root->left);
+        int rightHeight=height(root->right);
         int diff = abs(leftHeight-rightHeight);
 
         bool currNodeAns = (diff<=1);
-        bool leftKaAns = isBalanced(root->left);
-        bool rightKaAns = isBalanced(root->right); 
+        bool leftSubtree= isBalanced(root->left);
+        bool rightSubtree= isBalanced(root->right);
 
-        //these all three cases in bool need to be true at the same time
-        if(currNodeAns && leftKaAns && rightKaAns){
+        //When the all three cases of this bool functions return true
+        if(currNodeAns && leftSubtree && rightSubtree){
             return true;
         }
+        //else we will return false
         return false;
-
     }
 };
