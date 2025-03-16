@@ -11,35 +11,37 @@
  */
 class Solution {
 public:
-    void Solve(TreeNode* root, int targetSum,vector<vector<int>>&ans,vector<int>temp,int sum){
+    void Solve(TreeNode* root, int targetSum,vector<vector<int>>&ans,            vector<int>temp,int sum){
         if(root==NULL){
             return;
         }
-        //sum
+        //now we will add sum
         sum+=root->val;
-        //push the root val to temp
         temp.push_back(root->val);
-        //check if leaf node
+        //now we will check for leaf node
         if(root->left==NULL && root->right==NULL){
-            //verify if the sum == target sum
             if(sum==targetSum){
                 ans.push_back(temp);
             }
-            else{
-                return;
-            }
         }
-        //Now recursive calls
+        
+        //Now we will do the same work recursively for left and right subtree
         Solve(root->left,targetSum,ans,temp,sum);
         Solve(root->right,targetSum,ans,temp,sum);
     }
-
     vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
-        //we will create 2d vector for storing 1d arrays
+        //we will be creating two vectors
+        //one will be 2d vector and other will be 1d vector
+        //one will store the path values and other will store the path
+
         vector<vector<int>>ans;
         vector<int>temp;
-        int sum=0;
+        int sum;
+
+        //Now we will call vodi function 
         Solve(root,targetSum,ans,temp,sum);
+        //solve function would have pushed all the path to ans array
+        //return ans array
         return ans;
     }
 };
