@@ -17,12 +17,10 @@ public:
         //case 2 when both the p and q are on same side
         if(p->val < root->val && q->val < root->val){
             //in this case we need to go inside the left subtree
-            TreeNode*leftAns =  lowestCommonAncestor(root->left,p,q);
-            return leftAns;
+            return lowestCommonAncestor(root->left,p,q);
         }
         else if(p->val > root->val && q->val > root->val){
-            TreeNode*rightAns = lowestCommonAncestor(root->right,p,q);
-            return rightAns;
+            return lowestCommonAncestor(root->right,p,q);
         }
         else if(p->val > root->val && q->val < root->val){
             // since both p and q are in different branches
