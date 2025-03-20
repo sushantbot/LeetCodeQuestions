@@ -25,8 +25,8 @@ public:
         return finalans;
     }
     bool isValidBST(TreeNode* root) {
-        long long int lb = -2147483658;
-        long long int ub = 2147483658;
+        long long int lb = -2147483649;
+        long long int ub = 2147483649;
         
         //Calling solve function 
         return Solve(root,lb,ub);
