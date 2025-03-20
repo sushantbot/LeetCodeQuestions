@@ -11,24 +11,24 @@
  */
 class Solution {
 public:
-
     bool Solve(TreeNode*root,long long int lb,long long int ub){
         if(root==NULL){
             return true;
         }
-        bool condition1 = (root->val < ub && root->val > lb);
+
+        bool rootConditionCheck = (root->val < ub && root->val >lb);
         bool leftAns = Solve(root->left,lb,root->val);
         bool rightAns = Solve(root->right,root->val,ub);
 
-        bool finalans = (condition1 && leftAns && rightAns);
-
-        return finalans;
+        //now finally return ans
+        return (rootConditionCheck && leftAns && rightAns);
     }
     bool isValidBST(TreeNode* root) {
-        long long int lb = -2147483649;
-        long long int ub = 2147483649;
-        
-        //Calling solve function 
+        long long int lb =  -2147483657;  
+        long long int ub = 2147483657;
+
+        //passing these range into function 
         return Solve(root,lb,ub);
+
     }
 };
