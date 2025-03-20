@@ -11,27 +11,24 @@
  */
 class Solution {
 public:
-    // from this function i will be just storing my inorder traversal in array
-
-    void inOrderTraversal(TreeNode*&root,vector<int>&arr){
+    int kthSmallest(TreeNode* root, int &k) {
         if(root==NULL){
-            return;
+            return -1;
         }
-        //now call for left
-        inOrderTraversal(root->left,arr);
-        arr.push_back(root->val);
-        inOrderTraversal(root->right,arr);
-    }
-    int kthSmallest(TreeNode* root, int k) {
-        vector<int>arr;
-        inOrderTraversal(root,arr);
-        //Now the sorted arry has been created
-        int i=-1;
-        while(k!=0){
-            k--;
-            i++;
+        // LNR
+        int leftAns= kthSmallest(root->left,k);
+        if(leftAns != -1){
+            return leftAns;
         }
-        //when we are here k=0 and i is the required index;
-        return arr[i];
+
+        k--;
+        if(k==0){
+            return root->val;
+        }
+
+        int rightAns = kthSmallest(root->right,k);
+        //we have to return rightans always because left wont be returned if -1
+        //so we have to return right even if it -1
+        return rightAns;
     }
 };
