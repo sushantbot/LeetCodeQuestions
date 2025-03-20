@@ -21,38 +21,26 @@ public:
         arr.push_back(root->val);
         generateInorderArray(root->right,arr);
     }
-    int Sum(vector<int>&arr,int start,int end,int targetSum){
-        int sum=0;
+    bool findTarget(TreeNode* root, int k) {
+        vector<int>vect;
+        generateInorderArray(root,vect);
+        //from function call above vect array has been generated
+        //now check sum using binary search
+        int start = 0;
+        int end = vect.size()-1;
         while(start < end){
-            sum = arr[start]+arr[end];
-            if(sum==targetSum){
-                return sum;
+            int sum=vect[start]+vect[end]; 
+            if(sum==k){
+                return true;
             }
-            else if(sum < targetSum){
+            else if(sum < k){
                 start++;
             }else{
                 //when sum>targetSum, end-- because end contains larger element
                 end--;
             }
         }
-        return sum;
-
-    }
-
-    bool findTarget(TreeNode* root, int k) {
-        vector<int>arr;
-        generateInorderArray(root,arr);
-        //from function call above vect array has been generated
-        //now check sum using binary search
-        int finalSum  = Sum(arr,0,arr.size()-1,k);
-
-        if(finalSum==k){
-            return true;
-        }
-        else{
-            return false;
-        }
-
-
+        return false;
+    
     }
 };
