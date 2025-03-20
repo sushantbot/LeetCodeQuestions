@@ -14,33 +14,27 @@ public:
         if(root==NULL){
             return NULL;
         }
-        if(root == p){
-            return p;
-        }
-        if(root==q){
-            return q;
-        }
-
-        //Now recursive calls for left and right subtree
-        TreeNode* leftAns =lowestCommonAncestor(root->left,p,q);
-        TreeNode* rightAns =lowestCommonAncestor(root->right,p,q);
-
-        //Now three cases are possible
-        //if both p and q are on the same side
-        if(leftAns == NULL && rightAns == NULL){
-            return NULL;
-        }
-        else if(leftAns != NULL && rightAns == NULL){
+        //case 2 when both the p and q are on same side
+        if(p->val < root->val && q->val < root->val){
+            //in this case we need to go inside the left subtree
+            TreeNode*leftAns =  lowestCommonAncestor(root->left,p,q);
             return leftAns;
         }
-        else if(leftAns == NULL && rightAns != NULL){
+        else if(p->val > root->val && q->val > root->val){
+            TreeNode*rightAns = lowestCommonAncestor(root->right,p,q);
             return rightAns;
         }
-        else{
-            //this is the case when both left and right are non null
+        else if(p->val > root->val && q->val < root->val){
+            // since both p and q are in different branches
+            return root;
+        }
+        
+        else if(p->val < root->val && q->val > root->val){
+            // since both p and q are in different branches
             return root;
         }
 
+        return root;
 
     }
 };
