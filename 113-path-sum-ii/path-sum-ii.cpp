@@ -11,37 +11,42 @@
  */
 class Solution {
 public:
-    void Solve(TreeNode* root, int targetSum,vector<vector<int>>&ans,            vector<int>temp,int sum){
+    void Solve(TreeNode* root, int targetSum,vector<vector<int>>&vect,vector<int>temp,int sum){
+        //the vect is passed by reference we cause we need to keep track of
+        //all the vectors which was passed before
+
+        //the temp is passed by value so that it doesnot store the value of
+        //previous calls
+
         if(root==NULL){
             return;
         }
-        //now we will add sum
+
+        //we will add sum 
         sum+=root->val;
         temp.push_back(root->val);
-        //now we will check for leaf node
+
+        //we will check for leaf node
         if(root->left==NULL && root->right==NULL){
-            if(sum==targetSum){
-                ans.push_back(temp);
+            if(targetSum==sum){
+                //push the temp vector inside the 2-D vector
+                vect.push_back(temp);
             }
         }
-        
-        //Now we will do the same work recursively for left and right subtree
-        Solve(root->left,targetSum,ans,temp,sum);
-        Solve(root->right,targetSum,ans,temp,sum);
+
+        //now recursive calls for left and right Subtree
+        Solve(root->left,targetSum,vect,temp,sum);
+        Solve(root->right,targetSum,vect,temp,sum);
+
+
+
+
     }
     vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
-        //we will be creating two vectors
-        //one will be 2d vector and other will be 1d vector
-        //one will store the path values and other will store the path
-
-        vector<vector<int>>ans;
-        vector<int>temp;
-        int sum;
-
-        //Now we will call vodi function 
-        Solve(root,targetSum,ans,temp,sum);
-        //solve function would have pushed all the path to ans array
-        //return ans array
-        return ans;
+        vector<vector<int>>vect;    //the stored 1d vector will be pushed here
+        vector<int>temp;    //this will be used to store path
+        int sum = 0;
+        Solve(root,targetSum,vect,temp,sum);
+        return vect;
     }
 };
