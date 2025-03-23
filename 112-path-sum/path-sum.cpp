@@ -11,32 +11,32 @@
  */
 class Solution {
 public:
-    bool Solve(TreeNode*root,int targetSum,int sum){
-                if(root==NULL){
-            //tree DNE so return false
+    bool Solve(TreeNode* root, int targetSum,int Sum){
+        if(root==NULL){
             return false;
         }
-        sum+=root->val;
+        Sum+=root->val;
+
+        //check if leaf node
         if(root->left==NULL && root->right == NULL){
-            if(sum==targetSum){
+            if(Sum == targetSum){
                 return true;
             }
             return false;
         }
 
-        //recursive call
-        bool leftAns = Solve(root->left,targetSum,sum);
-        bool rightAns = Solve(root->right,targetSum,sum);
-
-        //now we will return true in the case if anyone of left and right is true
+        //then i will go into recursive calls
+        bool leftAns = Solve(root->left,targetSum,Sum);
+        bool rightAns = Solve(root->right,targetSum,Sum);
 
         return (leftAns || rightAns);
 
 
-
+        //now what i will be doing is add the data of node till i get leaf and check with target sum when i get leaf, otherwise continue
     }
     bool hasPathSum(TreeNode* root, int targetSum) {
-        int sum = 0;
-        return Solve(root,targetSum,sum);
+        int Sum = 0;
+        bool finalAns = Solve(root,targetSum,Sum);
+        return finalAns;       
     }
 };
