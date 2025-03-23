@@ -10,35 +10,33 @@
 class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        // Base case of recursion
-        if (root == NULL) {
+        if(root==NULL){
             return NULL;
         }
-        if (root == p) {
+        if(root==p){
             return p;
         }
-        if (root == q) {
+        if(root==q){
             return q;
         }
 
+        TreeNode*leftAns = lowestCommonAncestor(root->left,p,q);
+        TreeNode*rightAns = lowestCommonAncestor(root->right,p,q);
 
-        //Now recursive call and cases
-        TreeNode*leftKaAns = lowestCommonAncestor(root->left,p,q);
-        TreeNode*rightKaAns = lowestCommonAncestor(root->right,p,q);
+        //Now there are 3 cases for this question 
 
-        if(leftKaAns==NULL && rightKaAns!=NULL){
-            return rightKaAns;
+        if(leftAns == NULL && rightAns != NULL){
+            return rightAns;
         }
-        else if(leftKaAns!=NULL && rightKaAns==NULL){
-            return leftKaAns;
+        else if (leftAns != NULL && rightAns == NULL ){
+            return leftAns;
         }
-        else if(leftKaAns==NULL && rightKaAns==NULL){
+        else if(leftAns == NULL && rightAns == NULL){
             return NULL;
         }
         else{
+            //this case is when both are non null, return root;
             return root;
         }
-
-        
     }
 };
