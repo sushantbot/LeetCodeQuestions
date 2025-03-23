@@ -29,18 +29,20 @@ public:
             return true;
         }
 
+        int leftHeight = height(root->left);
+        int rightHeight = height(root->right);
+
+        int diff = abs(leftHeight-rightHeight);
+        bool currNodeAns = (diff<=1);
         //there are three cases for this to be true
         //case 1  the left subtree should be height balanced
         bool leftAns = isBalanced(root->left);
         //case 2  the right subtree should be height balanced
         bool rightAns = isBalanced(root->right);
         //case 3  the diff = abs(leftHeight-rightHeight)<=1
-        int leftHeight = height(root->left);
-        int rightHeight = height(root->right);
 
-        bool diff = (abs(leftHeight-rightHeight)<=1);
 
         //now returning true iff the above three cases are true at the same time
-        return (leftAns && rightAns && diff);       
+        return (currNodeAns && leftAns && rightAns);       
     }
 };
