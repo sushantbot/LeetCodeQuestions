@@ -18,11 +18,11 @@ public:
                 return true;
             }
 
-            //otherwise continue traversing and pushing true
+            //Node not visited so store it
             mapping[temp]=true;
-
             temp=temp->next;
         }
+        //when out of loop means there is NULL at end and no cycle present
         return false;
     }
 };
