@@ -9,20 +9,20 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        unordered_map<ListNode *,bool>mapping;
-        ListNode *temp = head;
-        while(temp != NULL){
-            //sabse pehle check kr lunga ki ye node visited hai ya nahi
-            //if this node is visited this means cycle present
-            if(mapping.find(temp)!=mapping.end()){
-                return true;
+        ListNode*temp = head;
+        unordered_map<ListNode*,bool>mapping;
+        //Now we will store each and every Node which we tarverse
+        while(temp!=NULL){
+            //first Ask if already exists or not
+            if(mapping.find(temp) != mapping.end()){
+                //this if condition means temp node already exists
+                return true;    // cycle present
             }
 
-            //Node not visited so store it
+            //if Not then we will store it and proceed
             mapping[temp]=true;
             temp=temp->next;
         }
-        //when out of loop means there is NULL at end and no cycle present
         return false;
     }
 };
